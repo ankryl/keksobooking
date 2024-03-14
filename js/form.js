@@ -149,7 +149,6 @@ const getPhotoPreview = () => renderPhoto(photoChooser, getPhoto);
 
 getPhotoPreview();
 
-
 //ПЕРЕВОД ФОРМЫ В НЕАКТИВНОЕ СОСТОЯНИЕ
 const form = document.querySelector('.ad-form');
 const fieldset = document.querySelectorAll('.ad-form__element');

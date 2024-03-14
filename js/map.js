@@ -50,10 +50,6 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
-// mainPinMarker.on("moveend", (evt) => {
-//   address.value = evt.target.getLatLng();
-// });
-
 mainPinMarker.on("moveend", (evt) => {
   address.value = evt.target.getLatLng();
 });
@@ -120,17 +116,10 @@ const renderAnnouncement = (test) => {
     ).textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
     announcement.querySelector(".popup__description").textContent =
       offer.descriptions;
-    // announcement.querySelector(".popup__photos").src = photos||'';
     author.avatar === "img/avatars/user11.png"
       ? (announcement.querySelector(".popup__avatar").style.display = "none")
       : (announcement.querySelector(".popup__avatar").src = author.avatar);
-    // announcement.querySelector(".popup__avatar").src = author.avatar || "";
     console.log(author.avatar);
-    // if (author.avatar) {
-    //   announcement.querySelector(".popup__avatar").style.display = "none";
-    // }else{
-    //   announcement.querySelector(".popup__avatar").src = author.avatar;
-    // }
     const cardPhotos = announcement.querySelector(".popup__photos");
     cardPhotos.innerHTML = "";
     if (offer.photos) {
@@ -148,22 +137,6 @@ const renderAnnouncement = (test) => {
     } else {
       cardFeatures.remove();
     }
-
-    // let offersFeatures = offer.features || [];
-    // let announcementItemOfFeauters = document.createDocumentFragment();
-
-    // offersFeatures.forEach((feature) => {
-    //   let featureAnnouncement = document.createElement("li");
-    //   featureAnnouncement.classList.add(
-    //     "popup__feature",
-    //     `popup__feature--${feature}`
-    //   );
-    //   featureAnnouncement.textContent = feature;
-    //   announcementItemOfFeauters.appendChild(featureAnnouncement);
-    // });
-    // announcement
-    //   .querySelector(".popup__features")
-    //   .appendChild(announcementItemOfFeauters);
 
     const icon = L.icon({
       iconUrl: "img/pin.svg",
