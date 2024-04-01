@@ -1,4 +1,4 @@
-const selectFilter = document.querySelector(".map__filters");
+const selectFilter = document.querySelector('.map__filters');
 
 const housingPrice = {
   low: {
@@ -18,12 +18,12 @@ const housingPrice = {
 const filterControlGroups = Array.from(selectFilter.children);
 
 const filterRules = {
-  "housing-type": ({ type }, value) => value === type,
-  "housing-price": ({ price }, value) =>
+  'housing-type': ({ type }, value) => value === type,
+  'housing-price': ({ price }, value) =>
     price >= housingPrice[value].from && price < housingPrice[value].to,
-  "housing-rooms": ({ rooms }, value) => value === rooms.toString(),
-  "housing-guests": ({ guests }, value) => value === guests.toString(),
-  "housing-features": ({ features }) => {
+  'housing-rooms': ({ rooms }, value) => value === rooms.toString(),
+  'housing-guests': ({ guests }, value) => value === guests.toString(),
+  'housing-features': ({ features }) => {
     if (!features) {
       return false;
     }
@@ -31,8 +31,7 @@ const filterRules = {
       selectFilter.querySelectorAll('[type="checkbox"]:checked')
     );
     return checkedCheckboxes.every(({ value }) =>
-      features.some((feature) => feature === value)
-    );
+      features.some((feature) => feature === value));
   },
 };
 
