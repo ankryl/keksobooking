@@ -1,6 +1,4 @@
-/* global _:readonly */
 import './util.js';
-import './create-objects.js';
 import './form.js';
 import { getDataFilter, getDataNoneFilter } from './fetch.js';
 import { filterControlGroups, filterRules, selectFilter } from './filter.js'

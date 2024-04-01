@@ -1,8 +1,8 @@
+import { checkEsc } from './util.js';
+
 const removeAllert = (type) => {
   document.querySelector(type).remove();
 };
-
-import { checkEsc } from './util.js';
 
 //ремув по клику
 document.addEventListener('keydown', function () {
@@ -54,7 +54,6 @@ const showGetError = (text) => {
     removeAllert('.errorData');
   });
 };
-
 
 //успешная отправка формы
 const successTemplate = document

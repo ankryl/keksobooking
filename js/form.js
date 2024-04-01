@@ -1,22 +1,22 @@
 //валидация на js
-let typeHousing = document.querySelector('#type');
-let price = document.querySelector('#price');
-let timeIn = document.querySelector('#timein');
-let timeOut = document.querySelector('#timeout');
-let roomNumber = document.querySelector('#room_number');
-let capacityNumber = document.querySelector('#capacity');
-let buttonSubmit = document.querySelector('.ad-form__submit');
-let inputAvatar = document.querySelector('.ad-form-header__input');
-let inputAvatarBorder = document.querySelector('.ad-form-header__drop-zone');
-let inputImgHouse = document.querySelector('.ad-form__input');
-let inputImgHouseBorder = document.querySelector('.ad-form__drop-zone');
+const typeHousing = document.querySelector('#type');
+const price = document.querySelector('#price');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const roomNumber = document.querySelector('#room_number');
+const capacityNumber = document.querySelector('#capacity');
+const buttonSubmit = document.querySelector('.ad-form__submit');
+const inputAvatar = document.querySelector('.ad-form-header__input');
+const inputAvatarBorder = document.querySelector('.ad-form-header__drop-zone');
+const inputImgHouse = document.querySelector('.ad-form__input');
+const inputImgHouseBorder = document.querySelector('.ad-form__drop-zone');
 
 //фото аватар
 inputAvatar.addEventListener('change', (evt) => {
-  let regex = /\.(png|jpg|jpeg)$/i;
+  const regex = /\.(png|jpg)$/i;
   if (regex.test(evt.currentTarget.value)) {
     inputAvatarBorder.style.border = 'dashed 1px #c7c7c7';
-    inputAvatar.setCustomValidity("");
+    inputAvatar.setCustomValidity('');
     buttonSubmit.removeAttribute('disabled');
   } else {
     inputAvatarBorder.style.border = 'dashed 2px red';
@@ -27,80 +27,77 @@ inputAvatar.addEventListener('change', (evt) => {
 });
 
 //фото жилья
-inputImgHouse.addEventListener("change", (evt) => {
-  let regex = /\.(png|jpg)$/i;
+inputImgHouse.addEventListener('change', (evt) => {
+  const regex = /\.(png|jpg)$/i;
   if (regex.test(evt.currentTarget.value)) {
-    inputImgHouseBorder.style.border = "dashed 1px #c7c7c7";
-    inputImgHouse.setCustomValidity("");
-    buttonSubmit.removeAttribute("disabled");
+    inputImgHouseBorder.style.border = 'dashed 1px #c7c7c7';
+    inputImgHouse.setCustomValidity('');
+    buttonSubmit.removeAttribute('disabled');
   } else {
-    inputImgHouseBorder.style.border = "dashed 2px red";
-    inputImgHouse.setCustomValidity("только файлы формата png и jpg!");
-    buttonSubmit.setAttribute("disabled", "disabled");
+    inputImgHouseBorder.style.border = 'dashed 2px red';
+    inputImgHouse.setCustomValidity('только файлы формата png и jpg!');
+    buttonSubmit.setAttribute('disabled', 'disabled');
   }
   inputImgHouse.reportValidity();
 });
 
 //тип жилья и цена за ночь
 const MIN_PRICE_OF_TYPE = {
-  bungalow: "0",
-  flat: "1000",
-  hotel: "3000",
-  house: "5000",
-  palace: "10000",
+  bungalow: '0',
+  flat: '1000',
+  hotel: '3000',
+  house: '5000',
+  palace: '10000',
 };
 
 const MAX_PRICE = 1000000;
 
-typeHousing.addEventListener("change", () => {
+typeHousing.addEventListener('change', () => {
   price.placeholder = MIN_PRICE_OF_TYPE[typeHousing.value];
   price.min = MIN_PRICE_OF_TYPE[typeHousing.value];
 });
 
-price.addEventListener("change", () => {
+price.addEventListener('change', () => {
   const valuePrice = price.value;
   if (parseFloat(valuePrice.toString()) < MIN_PRICE_OF_TYPE[typeHousing.value].toString()) {
-    price.style.borderColor = "red";
+    price.style.borderColor = 'red';
   } else if (valuePrice > MAX_PRICE) {
-    price.style.borderColor = "red";
+    price.style.borderColor = 'red';
     price.setCustomValidity(`Максимальная цена за ночь ${MAX_PRICE}.`);
   } else {
     price.style.borderColor = 'white';
-    price.setCustomValidity("");
+    price.setCustomValidity('');
   }
   price.reportValidity();
 });
 
 //время заезда и выезда
-timeIn.addEventListener("change", () => {
+timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
 });
 
-timeOut.addEventListener("change", () => {
+timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
 //кол-во комнат и кол-во мест
-capacityNumber.addEventListener("change", () => {
-  if (roomNumber.value === "1" && capacityNumber.value != "1") {
-    capacityNumber.style.borderColor = "red";
+capacityNumber.addEventListener('change', () => {
+  if (roomNumber.value === '1' && capacityNumber.value != '1') {
+    capacityNumber.style.borderColor = 'red';
     capacityNumber.setCustomValidity(
-      "В 1 комнате возможно разместить только 1 гостя"
-    );
+      'В 1 комнате возможно разместить только 1 гостя');
   } else if (
-    roomNumber.value === "2" &&
-    capacityNumber.value !== "1" &&
-    capacityNumber.value !== "2"
+    roomNumber.value === '2' &&
+    capacityNumber.value !== '1' &&
+    capacityNumber.value !== '2'
   ) {
-    capacityNumber.style.borderColor = "red";
+    capacityNumber.style.borderColor = 'red';
     capacityNumber.setCustomValidity(
-      "В 2 комнатах возможно разместить только от 1 до 2 гостей"
-    );
+      'В 2 комнатах возможно разместить только от 1 до 2 гостей');
   } else if (roomNumber.value === '3' && capacityNumber.value === '0') {
     capacityNumber.style.borderColor = 'red';
     capacityNumber.setCustomValidity(
-      'В 3 комнатах возможно разместить только от 1 до 3 гостей'
-    );
+      'В 3 комнатах возможно разместить только от 1 до 3 гостей');
   } else if (roomNumber.value === '100' && capacityNumber.value !== '0') {
     capacityNumber.style.borderColor = 'red';
     capacityNumber.setCustomValidity('100 комнат не для гостей');
