@@ -21,24 +21,6 @@ const getDataFilter = (paramFilter) => {
     });
 };
 
-const getDataNoneFilter = () => {
-  fetch('https://23.javascript.htmlacademy.pro/keksobooking/data')
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        showGetError('Ошибка загрузки данных с сервера');
-      }
-    })
-    .catch(() => {
-      showGetError('Ошибка загрузки данных с сервера');
-    })
-    .then((objects) => {
-      let noneFilter = objects.slice(0, OBJECTS_COUNT);
-      renderAnnouncement(noneFilter);
-    });
-};
-
 import { showPostError, showSuccess } from './alerts.js';
 
 // ОТПРАВКА ФОРМЫ
@@ -64,4 +46,4 @@ submitApplication.addEventListener('submit', (evt) => {
     });
 });
 
-export { getDataFilter, getDataNoneFilter };
+export { getDataFilter };

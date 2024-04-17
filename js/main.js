@@ -1,6 +1,6 @@
 import './util.js';
 import './form.js';
-import { getDataFilter, getDataNoneFilter } from './fetch.js';
+import { getDataFilter } from './fetch.js';
 import { filterControlGroups, filterRules, selectFilter } from './filter.js'
 
 const DEFAULT_VALUE = 'any';
@@ -9,7 +9,7 @@ const filterOffer = ({ offer }) =>
   filterControlGroups.every(
     ({ value, id }) => value === DEFAULT_VALUE || filterRules[id](offer, value));
 
-getDataNoneFilter();
+getDataFilter(filterOffer);
 
 const rerender = () => getDataFilter(filterOffer);
 
