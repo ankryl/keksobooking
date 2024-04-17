@@ -3,7 +3,7 @@ import { showGetError } from './alerts.js';
 
 const OBJECTS_COUNT = 10;
 
-const getDataFilter = (test) => {
+const getDataFilter = (paramFilter) => {
   fetch('https://23.javascript.htmlacademy.pro/keksobooking/data')
     .then((response) => {
       if (response.ok) {
@@ -12,11 +12,11 @@ const getDataFilter = (test) => {
         showGetError('Ошибка загрузки данных с сервера');
       }
     })
-    .catch((err) => {
+    .catch(() => {
       showGetError('Ошибка загрузки данных с сервера');
     })
     .then((objects) => {
-      let aFiltered = objects.filter(test).slice(0, OBJECTS_COUNT);
+      let aFiltered = objects.filter(paramFilter).slice(0, OBJECTS_COUNT);
       renderAnnouncement(aFiltered);
     });
 };
@@ -30,7 +30,7 @@ const getDataNoneFilter = () => {
         showGetError('Ошибка загрузки данных с сервера');
       }
     })
-    .catch((err) => {
+    .catch(() => {
       showGetError('Ошибка загрузки данных с сервера');
     })
     .then((objects) => {
@@ -38,9 +38,6 @@ const getDataNoneFilter = () => {
       renderAnnouncement(noneFilter);
     });
 };
-
-
-export { getDataFilter, getDataNoneFilter };
 
 import { showPostError, showSuccess } from './alerts.js';
 
@@ -66,3 +63,5 @@ submitApplication.addEventListener('submit', (evt) => {
       showPostError('Не удалось отправить форму. Попробуйте ещё раз');
     });
 });
+
+export { getDataFilter, getDataNoneFilter };
